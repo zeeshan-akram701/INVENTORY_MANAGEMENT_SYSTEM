@@ -94,6 +94,7 @@
             btnlogout.TabIndex = 15;
             btnlogout.Text = "Logout";
             btnlogout.UseVisualStyleBackColor = false;
+            btnlogout.Click += btnlogout_Click;
             // 
             // btndash
             // 
@@ -108,6 +109,7 @@
             btndash.TabIndex = 5;
             btndash.Text = "Dashboard";
             btndash.UseVisualStyleBackColor = false;
+            btndash.Click += btndash_Click;
             // 
             // btncategory
             // 
@@ -122,6 +124,7 @@
             btncategory.TabIndex = 12;
             btncategory.Text = "Category";
             btncategory.UseVisualStyleBackColor = false;
+            btncategory.Click += btncategory_Click;
             // 
             // btnreports
             // 
@@ -136,6 +139,7 @@
             btnreports.TabIndex = 13;
             btnreports.Text = "Reports";
             btnreports.UseVisualStyleBackColor = false;
+            btnreports.Click += btnreports_Click;
             // 
             // btnuser
             // 
@@ -150,6 +154,7 @@
             btnuser.TabIndex = 14;
             btnuser.Text = "User";
             btnuser.UseVisualStyleBackColor = false;
+            btnuser.Click += btnuser_Click;
             // 
             // btnproducts
             // 
@@ -164,6 +169,7 @@
             btnproducts.TabIndex = 11;
             btnproducts.Text = "Products";
             btnproducts.UseVisualStyleBackColor = false;
+            btnproducts.Click += btnproducts_Click;
             // 
             // userspanel
             // 

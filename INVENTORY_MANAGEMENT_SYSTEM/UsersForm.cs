@@ -10,15 +10,15 @@ using System.Windows.Forms;
 
 namespace INVENTORY_MANAGEMENT_SYSTEM
 {
-    public partial class ProductForm : BaseForm
+    public partial class UsersForm : BaseForm
     {
-        public ProductForm()
+        public UsersForm()
         {
             InitializeComponent();
-            lblTitle.Text = "Products ";
+            lblTitle.Text = "Users";
         }
 
-        private void ProductForm_Load(object sender, EventArgs e)
+        private void UsersForm_Load(object sender, EventArgs e)
         {
 
         }

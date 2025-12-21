@@ -1,6 +1,6 @@
 ﻿namespace INVENTORY_MANAGEMENT_SYSTEM
 {
-    partial class ProductForm
+    partial class reportForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,16 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
+            pnlHeader.SuspendLayout();
             SuspendLayout();
             // 
-            // ProductForm
+            // pnlHeader
+            // 
+            pnlHeader.Size = new Size(1339, 65);
+            // 
+            // btnClose
+            // 
+            btnClose.FlatAppearance.BorderSize = 0;
+            btnClose.Location = new Point(1249, 0);
+            // 
+            // btnMinimize
+            // 
+            btnMinimize.FlatAppearance.BorderSize = 0;
+            btnMinimize.Location = new Point(1294, 0);
+            // 
+            // reportForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1633, 632);
-            Name = "ProductForm";
-            Text = "ProductForm";
-            Load += ProductForm_Load;
+            ClientSize = new Size(1339, 566);
+            Name = "reportForm";
+            Text = "reportForm";
+            Load += reportForm_Load;
+            pnlHeader.ResumeLayout(false);
+            pnlHeader.PerformLayout();
             ResumeLayout(false);
         }
 
