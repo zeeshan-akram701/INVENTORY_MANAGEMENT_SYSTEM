@@ -41,7 +41,7 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
             {
                 Text = "Page Title",
                 ForeColor = Color.White,
-                Font = new Font("Segoe UI", 16, FontStyle.Bold),
+                Font = new Font("Book Antiqua", 16, FontStyle.Bold),
                 AutoSize = true,
                 Location = new Point(15, 8)
             };
@@ -52,7 +52,7 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
             {
                 Text = "Inventory management system",
                 ForeColor = Color.White,
-                Font = new Font("Segoe UI", 16, FontStyle.Bold),
+                Font = new Font("Book Antiqua", 16, FontStyle.Bold),
                 AutoSize = true,
                 Location = new Point(500, 8)
             };

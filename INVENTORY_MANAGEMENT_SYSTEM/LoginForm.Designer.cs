@@ -52,6 +52,8 @@
             btnLogin.TabIndex = 0;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.FlatStyle = FlatStyle.Flat;
+            btnLogin.FlatAppearance.BorderSize = 0;
             btnLogin.Click += btnLogin_Click;
             // 
             // txtUsername
@@ -138,13 +140,13 @@
             // 
             // lblName
             // 
-            lblName.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblName.Font = new Font("Book Antiqua", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblName.ForeColor = SystemColors.ButtonFace;
             lblName.Location = new Point(194, 0);
             lblName.Name = "lblName";
             lblName.Size = new Size(673, 72);
             lblName.TabIndex = 0;
-            lblName.Text = "inventory management system ";
+            lblName.Text = "Inventory management system ";
             lblName.TextAlign = ContentAlignment.TopCenter;
             lblName.Click += lblName_Click;
             // 

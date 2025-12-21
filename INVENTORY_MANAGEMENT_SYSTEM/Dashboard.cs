@@ -28,5 +28,10 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
             btnuser.FlatAppearance.BorderSize = 0;
             //btndash.FlatAppearance.BorderSize = 0;
         }
+
+        private void pnlorders_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
