@@ -27,7 +27,7 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
             LoadUsers();
         }
 
-        // 🔹 Load Users
+        // ===================== LOAD USERS =====================
         private void LoadUsers()
         {
             using (SqlConnection con = DatabaseHelper.GetConnection())
@@ -42,9 +42,72 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
             }
         }
 
-        // ➕ Add User
+        // ===================== VALIDATION =====================
+        private bool IsValidInput(bool isUpdate = false)
+        {
+            if (string.IsNullOrWhiteSpace(txtFullName.Text))
+            {
+                MessageBox.Show("Full Name is required.");
+                txtFullName.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtUsername.Text))
+            {
+                MessageBox.Show("Username is required.");
+                txtUsername.Focus();
+                return false;
+            }
+
+            if (!isUpdate && string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                MessageBox.Show("Password is required.");
+                txtPassword.Focus();
+                return false;
+            }
+
+            if (cmbRole.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a role.");
+                return false;
+            }
+
+            if (cmbStatus.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a status.");
+                return false;
+            }
+
+            return true;
+        }
+
+        // ===================== DUPLICATE USER CHECK =====================
+        private bool UsernameExists(string username)
+        {
+            using (SqlConnection con = DatabaseHelper.GetConnection())
+            {
+                SqlCommand cmd = new SqlCommand(
+                    "SELECT COUNT(*) FROM Employees WHERE Username=@user", con);
+                cmd.Parameters.AddWithValue("@user", username);
+
+                con.Open();
+                int count = (int)cmd.ExecuteScalar();
+                return count > 0;
+            }
+        }
+
+        // ===================== ADD USER =====================
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (!IsValidInput())
+                return;
+
+            if (UsernameExists(txtUsername.Text.Trim()))
+            {
+                MessageBox.Show("Username already exists. Choose another.");
+                return;
+            }
+
             using (SqlConnection con = DatabaseHelper.GetConnection())
             {
                 SqlCommand cmd = new SqlCommand(
@@ -52,26 +115,33 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
                     (FullName, Username, Password, Role, Phone, Status)
                     VALUES (@name,@user,@pass,@role,@phone,@status)", con);
 
-                cmd.Parameters.AddWithValue("@name", txtFullName.Text);
-                cmd.Parameters.AddWithValue("@user", txtUsername.Text);
-                cmd.Parameters.AddWithValue("@pass", txtPassword.Text); // hashing later
+                cmd.Parameters.AddWithValue("@name", txtFullName.Text.Trim());
+                cmd.Parameters.AddWithValue("@user", txtUsername.Text.Trim());
+                cmd.Parameters.AddWithValue("@pass", txtPassword.Text.Trim());
                 cmd.Parameters.AddWithValue("@role", cmbRole.Text);
-                cmd.Parameters.AddWithValue("@phone", txtPhone.Text);
+                cmd.Parameters.AddWithValue("@phone", txtPhone.Text.Trim());
                 cmd.Parameters.AddWithValue("@status", cmbStatus.Text);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
 
-            MessageBox.Show("User Added Successfully");
+            MessageBox.Show("User added successfully");
             LoadUsers();
             ClearForm();
         }
 
-        // ✏ Update User
+        // ===================== UPDATE USER =====================
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (selectedUserId == 0) return;
+            if (selectedUserId == 0)
+            {
+                MessageBox.Show("Please select a user first.");
+                return;
+            }
+
+            if (!IsValidInput(isUpdate: true))
+                return;
 
             using (SqlConnection con = DatabaseHelper.GetConnection())
             {
@@ -85,29 +155,30 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
                     WHERE EmployeeID=@id", con);
 
                 cmd.Parameters.AddWithValue("@id", selectedUserId);
-                cmd.Parameters.AddWithValue("@name", txtFullName.Text);
-                cmd.Parameters.AddWithValue("@user", txtUsername.Text);
+                cmd.Parameters.AddWithValue("@name", txtFullName.Text.Trim());
+                cmd.Parameters.AddWithValue("@user", txtUsername.Text.Trim());
                 cmd.Parameters.AddWithValue("@role", cmbRole.Text);
-                cmd.Parameters.AddWithValue("@phone", txtPhone.Text);
+                cmd.Parameters.AddWithValue("@phone", txtPhone.Text.Trim());
                 cmd.Parameters.AddWithValue("@status", cmbStatus.Text);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
 
-            MessageBox.Show("User Updated");
+            MessageBox.Show("User updated successfully");
             LoadUsers();
             ClearForm();
         }
 
-        // ❌ Delete User
+        // ===================== DELETE USER =====================
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (selectedUserId == 0) return;
+            if (selectedUserId == 0)
+                return;
 
             DialogResult dr = MessageBox.Show(
                 "Are you sure you want to delete this user?",
-                "Confirm Delete",
+                "Confirm",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
 
@@ -128,7 +199,7 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
             }
         }
 
-        // 🖱 Grid Click
+        // ===================== GRID CLICK =====================
         private void dgvUsers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -144,6 +215,7 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
             }
         }
 
+        // ===================== CLEAR FORM =====================
         private void ClearForm()
         {
             selectedUserId = 0;

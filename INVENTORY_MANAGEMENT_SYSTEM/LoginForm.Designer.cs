@@ -82,7 +82,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Snow;
+            panel1.BackColor = Color.Gainsboro;
             panel1.Controls.Add(checkBox1);
             panel1.Controls.Add(lblLogin);
             panel1.Controls.Add(txtPassword);
@@ -165,6 +165,7 @@
             MinimizeBox = false;
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += LoginForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);

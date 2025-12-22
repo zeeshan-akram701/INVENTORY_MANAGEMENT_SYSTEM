@@ -24,85 +24,151 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
             LoadProducts();
         }
 
-        // 🔹 Load Products into Grid
+        // ===================== LOAD PRODUCTS =====================
         private void LoadProducts()
         {
             using (SqlConnection con = DatabaseHelper.GetConnection())
             {
-                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Products", con);
+                SqlDataAdapter da = new SqlDataAdapter(
+                    "SELECT * FROM Products", con);
+
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dgvProducts.DataSource = dt;
             }
         }
 
-        // 🔹 Add Product
+        // ===================== VALIDATION =====================
+        private bool IsValidProduct()
+        {
+            if (string.IsNullOrWhiteSpace(txtProductName.Text))
+            {
+                MessageBox.Show("Product name is required.");
+                txtProductName.Focus();
+                return false;
+            }
+
+            if (!decimal.TryParse(txtCostPrice.Text, out decimal cost) || cost < 0)
+            {
+                MessageBox.Show("Enter a valid cost price.");
+                txtCostPrice.Focus();
+                return false;
+            }
+
+            if (!decimal.TryParse(txtSellingPrice.Text, out decimal sell) || sell < 0)
+            {
+                MessageBox.Show("Enter a valid selling price.");
+                txtSellingPrice.Focus();
+                return false;
+            }
+
+            if (!int.TryParse(txtQuantity.Text, out int qty) || qty < 0)
+            {
+                MessageBox.Show("Enter a valid quantity.");
+                txtQuantity.Focus();
+                return false;
+            }
+
+            if (!int.TryParse(txtReorderLevel.Text, out int reorder) || reorder < 0)
+            {
+                MessageBox.Show("Enter a valid reorder level.");
+                txtReorderLevel.Focus();
+                return false;
+            }
+
+            if (cmbStatus.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select product status.");
+                return false;
+            }
+
+            return true;
+        }
+
+        // ===================== ADD PRODUCT =====================
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (!IsValidProduct())
+                return;
+
             using (SqlConnection con = DatabaseHelper.GetConnection())
             {
-                string query = @"INSERT INTO Products 
-                (ProductName, Category, CostPrice, SellingPrice, Quantity, ReorderLevel, Status)
-                VALUES (@name,@cat,@cp,@sp,@qty,@rl,@status)";
+                SqlCommand cmd = new SqlCommand(
+                    @"INSERT INTO Products
+                    (ProductName, Category, CostPrice, SellingPrice, Quantity, ReorderLevel, Status)
+                    VALUES (@name,@cat,@cp,@sp,@qty,@rl,@status)", con);
 
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@name", txtProductName.Text);
-                cmd.Parameters.AddWithValue("@cat", txtCategory.Text);
-                cmd.Parameters.AddWithValue("@cp", txtCostPrice.Text);
-                cmd.Parameters.AddWithValue("@sp", txtSellingPrice.Text);
-                cmd.Parameters.AddWithValue("@qty", txtQuantity.Text);
-                cmd.Parameters.AddWithValue("@rl", txtReorderLevel.Text);
+                cmd.Parameters.AddWithValue("@name", txtProductName.Text.Trim());
+                cmd.Parameters.AddWithValue("@cat", txtCategory.Text.Trim());
+                cmd.Parameters.AddWithValue("@cp", decimal.Parse(txtCostPrice.Text));
+                cmd.Parameters.AddWithValue("@sp", decimal.Parse(txtSellingPrice.Text));
+                cmd.Parameters.AddWithValue("@qty", int.Parse(txtQuantity.Text));
+                cmd.Parameters.AddWithValue("@rl", int.Parse(txtReorderLevel.Text));
                 cmd.Parameters.AddWithValue("@status", cmbStatus.Text);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
 
-            MessageBox.Show("Product Added Successfully");
+            MessageBox.Show("Product added successfully");
             LoadProducts();
             ClearForm();
         }
 
-        // 🔹 Update Product
+        // ===================== UPDATE PRODUCT =====================
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (selectedProductId == 0) return;
+            if (selectedProductId == 0)
+            {
+                MessageBox.Show("Please select a product first.");
+                return;
+            }
+
+            if (!IsValidProduct())
+                return;
 
             using (SqlConnection con = DatabaseHelper.GetConnection())
             {
-                string query = @"UPDATE Products SET
-                ProductName=@name, Category=@cat, CostPrice=@cp,
-                SellingPrice=@sp, Quantity=@qty, ReorderLevel=@rl, Status=@status
-                WHERE ProductID=@id";
+                SqlCommand cmd = new SqlCommand(
+                    @"UPDATE Products SET
+                    ProductName=@name,
+                    Category=@cat,
+                    CostPrice=@cp,
+                    SellingPrice=@sp,
+                    Quantity=@qty,
+                    ReorderLevel=@rl,
+                    Status=@status
+                    WHERE ProductID=@id", con);
 
-                SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@id", selectedProductId);
-                cmd.Parameters.AddWithValue("@name", txtProductName.Text);
-                cmd.Parameters.AddWithValue("@cat", txtCategory.Text);
-                cmd.Parameters.AddWithValue("@cp", txtCostPrice.Text);
-                cmd.Parameters.AddWithValue("@sp", txtSellingPrice.Text);
-                cmd.Parameters.AddWithValue("@qty", txtQuantity.Text);
-                cmd.Parameters.AddWithValue("@rl", txtReorderLevel.Text);
+                cmd.Parameters.AddWithValue("@name", txtProductName.Text.Trim());
+                cmd.Parameters.AddWithValue("@cat", txtCategory.Text.Trim());
+                cmd.Parameters.AddWithValue("@cp", decimal.Parse(txtCostPrice.Text));
+                cmd.Parameters.AddWithValue("@sp", decimal.Parse(txtSellingPrice.Text));
+                cmd.Parameters.AddWithValue("@qty", int.Parse(txtQuantity.Text));
+                cmd.Parameters.AddWithValue("@rl", int.Parse(txtReorderLevel.Text));
                 cmd.Parameters.AddWithValue("@status", cmbStatus.Text);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
 
-            MessageBox.Show("Product Updated");
+            MessageBox.Show("Product updated successfully");
             LoadProducts();
             ClearForm();
         }
 
-        // 🔹 Delete Product
+        // ===================== DELETE PRODUCT =====================
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (selectedProductId == 0) return;
+            if (selectedProductId == 0)
+                return;
 
             DialogResult dr = MessageBox.Show(
-                "Are you sure?",
-                "Delete",
-                MessageBoxButtons.YesNo);
+                "Are you sure you want to delete this product?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
 
             if (dr == DialogResult.Yes)
             {
@@ -121,7 +187,7 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
             }
         }
 
-        // 🔹 Grid Row Click
+        // ===================== GRID CLICK =====================
         private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -139,7 +205,7 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
             }
         }
 
-        // 🔹 Clear Form
+        // ===================== CLEAR FORM =====================
         private void ClearForm()
         {
             selectedProductId = 0;

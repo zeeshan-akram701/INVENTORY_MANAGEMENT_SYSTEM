@@ -49,6 +49,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Gainsboro;
             ClientSize = new Size(1379, 576);
             Name = "CategoriesForm";
             Text = "CategoriesForm";

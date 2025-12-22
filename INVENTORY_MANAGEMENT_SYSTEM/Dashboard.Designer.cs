@@ -173,10 +173,10 @@
             // 
             // userspanel
             // 
-            userspanel.BackColor = Color.FromArgb(192, 0, 0);
+            userspanel.BackColor = Color.Gray;
             userspanel.Controls.Add(lblusersData);
             userspanel.Cursor = Cursors.Hand;
-            userspanel.Location = new Point(842, 646);
+            userspanel.Location = new Point(394, 646);
             userspanel.Name = "userspanel";
             userspanel.Size = new Size(300, 150);
             userspanel.TabIndex = 5;
@@ -193,10 +193,10 @@
             // 
             // pnlorders
             // 
-            pnlorders.BackColor = Color.FromArgb(64, 64, 64);
+            pnlorders.BackColor = Color.DimGray;
             pnlorders.Controls.Add(lblorders);
             pnlorders.Cursor = Cursors.Hand;
-            pnlorders.Location = new Point(451, 646);
+            pnlorders.Location = new Point(804, 646);
             pnlorders.Name = "pnlorders";
             pnlorders.Size = new Size(300, 150);
             pnlorders.TabIndex = 6;
@@ -214,7 +214,7 @@
             // 
             // pnlsales
             // 
-            pnlsales.BackColor = Color.FromArgb(192, 64, 0);
+            pnlsales.BackColor = Color.FromArgb(64, 64, 64);
             pnlsales.Controls.Add(lblsales);
             pnlsales.Cursor = Cursors.Hand;
             pnlsales.Location = new Point(1236, 646);
@@ -236,7 +236,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.GhostWhite;
+            BackColor = Color.Silver;
             ClientSize = new Size(1851, 890);
             Controls.Add(pnlsales);
             Controls.Add(pnlorders);
