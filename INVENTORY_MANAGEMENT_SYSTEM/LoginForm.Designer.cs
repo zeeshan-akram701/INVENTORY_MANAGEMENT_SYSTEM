@@ -43,7 +43,9 @@
             // 
             // btnLogin
             // 
-            btnLogin.BackColor = Color.ForestGreen;
+            btnLogin.BackColor = Color.Black;
+            btnLogin.FlatAppearance.BorderSize = 0;
+            btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.Font = new Font("Book Antiqua", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = Color.White;
             btnLogin.Location = new Point(279, 250);
@@ -52,8 +54,6 @@
             btnLogin.TabIndex = 0;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = false;
-            btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.FlatAppearance.BorderSize = 0;
             btnLogin.Click += btnLogin_Click;
             // 
             // txtUsername
@@ -82,7 +82,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Ivory;
+            panel1.BackColor = Color.Snow;
             panel1.Controls.Add(checkBox1);
             panel1.Controls.Add(lblLogin);
             panel1.Controls.Add(txtPassword);
@@ -130,12 +130,13 @@
             // 
             // button1
             // 
+            button1.BackColor = Color.White;
             button1.Location = new Point(984, 12);
             button1.Name = "button1";
             button1.Size = new Size(112, 34);
             button1.TabIndex = 1;
             button1.Text = "❌";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // lblName
@@ -154,10 +155,11 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.ForestGreen;
+            BackColor = Color.Black;
             ClientSize = new Size(1122, 566);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            ForeColor = Color.Black;
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             MinimizeBox = false;

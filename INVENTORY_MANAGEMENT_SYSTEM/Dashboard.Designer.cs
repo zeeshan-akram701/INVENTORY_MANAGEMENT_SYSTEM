@@ -50,7 +50,7 @@
             // 
             // pnlHeader
             // 
-            pnlHeader.Size = new Size(1601, 65);
+            pnlHeader.Size = new Size(1851, 65);
             // 
             // lblTitle
             // 
@@ -59,16 +59,16 @@
             // btnClose
             // 
             btnClose.FlatAppearance.BorderSize = 0;
-            btnClose.Location = new Point(1511, 0);
+            btnClose.Location = new Point(1761, 0);
             // 
             // btnMinimize
             // 
             btnMinimize.FlatAppearance.BorderSize = 0;
-            btnMinimize.Location = new Point(1556, 0);
+            btnMinimize.Location = new Point(1806, 0);
             // 
             // panel1
             // 
-            panel1.BackColor = Color.ForestGreen;
+            panel1.BackColor = Color.Black;
             panel1.Controls.Add(btnlogout);
             panel1.Controls.Add(btndash);
             panel1.Controls.Add(btncategory);
@@ -78,12 +78,12 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 65);
             panel1.Name = "panel1";
-            panel1.Size = new Size(300, 780);
+            panel1.Size = new Size(300, 825);
             panel1.TabIndex = 4;
             // 
             // btnlogout
             // 
-            btnlogout.BackColor = Color.ForestGreen;
+            btnlogout.BackColor = Color.Black;
             btnlogout.Cursor = Cursors.Hand;
             btnlogout.FlatStyle = FlatStyle.Flat;
             btnlogout.Font = new Font("Book Antiqua", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -98,7 +98,7 @@
             // 
             // btndash
             // 
-            btndash.BackColor = Color.ForestGreen;
+            btndash.BackColor = Color.Black;
             btndash.Cursor = Cursors.Hand;
             btndash.FlatStyle = FlatStyle.Flat;
             btndash.Font = new Font("Book Antiqua", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -113,7 +113,7 @@
             // 
             // btncategory
             // 
-            btncategory.BackColor = Color.ForestGreen;
+            btncategory.BackColor = Color.Black;
             btncategory.Cursor = Cursors.Hand;
             btncategory.FlatStyle = FlatStyle.Flat;
             btncategory.Font = new Font("Book Antiqua", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -128,7 +128,7 @@
             // 
             // btnreports
             // 
-            btnreports.BackColor = Color.ForestGreen;
+            btnreports.BackColor = Color.Black;
             btnreports.Cursor = Cursors.Hand;
             btnreports.FlatStyle = FlatStyle.Flat;
             btnreports.Font = new Font("Book Antiqua", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -143,7 +143,7 @@
             // 
             // btnuser
             // 
-            btnuser.BackColor = Color.ForestGreen;
+            btnuser.BackColor = Color.Black;
             btnuser.Cursor = Cursors.Hand;
             btnuser.FlatStyle = FlatStyle.Flat;
             btnuser.Font = new Font("Book Antiqua", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -158,7 +158,7 @@
             // 
             // btnproducts
             // 
-            btnproducts.BackColor = Color.ForestGreen;
+            btnproducts.BackColor = Color.Black;
             btnproducts.Cursor = Cursors.Hand;
             btnproducts.FlatStyle = FlatStyle.Flat;
             btnproducts.Font = new Font("Book Antiqua", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -173,7 +173,7 @@
             // 
             // userspanel
             // 
-            userspanel.BackColor = Color.LimeGreen;
+            userspanel.BackColor = Color.FromArgb(192, 0, 0);
             userspanel.Controls.Add(lblusersData);
             userspanel.Cursor = Cursors.Hand;
             userspanel.Location = new Point(842, 646);
@@ -193,7 +193,7 @@
             // 
             // pnlorders
             // 
-            pnlorders.BackColor = Color.LimeGreen;
+            pnlorders.BackColor = Color.FromArgb(64, 64, 64);
             pnlorders.Controls.Add(lblorders);
             pnlorders.Cursor = Cursors.Hand;
             pnlorders.Location = new Point(451, 646);
@@ -214,7 +214,7 @@
             // 
             // pnlsales
             // 
-            pnlsales.BackColor = Color.LimeGreen;
+            pnlsales.BackColor = Color.FromArgb(192, 64, 0);
             pnlsales.Controls.Add(lblsales);
             pnlsales.Cursor = Cursors.Hand;
             pnlsales.Location = new Point(1236, 646);
@@ -237,7 +237,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.GhostWhite;
-            ClientSize = new Size(1601, 845);
+            ClientSize = new Size(1851, 890);
             Controls.Add(pnlsales);
             Controls.Add(pnlorders);
             Controls.Add(userspanel);

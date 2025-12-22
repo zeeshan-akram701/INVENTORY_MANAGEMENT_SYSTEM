@@ -31,7 +31,7 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
             {
                 Dock = DockStyle.Top,
                 Height = 65,
-                BackColor = Color.ForestGreen,
+                BackColor = Color.Black,
             };
             this.Controls.Add(pnlHeader);
             pnlHeader.BringToFront();
