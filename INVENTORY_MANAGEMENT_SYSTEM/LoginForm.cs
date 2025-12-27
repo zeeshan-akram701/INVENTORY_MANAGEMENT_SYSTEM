@@ -27,28 +27,34 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            SqlConnection con = DatabaseHelper.GetConnection();
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand(
-                "SELECT * FROM Users WHERE Username=@u AND Password=@p", con);
-            cmd.Parameters.AddWithValue("@u", txtUsername.Text);
-            cmd.Parameters.AddWithValue("@p", txtPassword.Text);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            if (dr.Read())
+            using (SqlConnection con = DatabaseHelper.GetConnection())
             {
-                MessageBox.Show("Login Successful");
-                new Dashboard().Show();
-                this.Hide();
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand(
+                    "SELECT * FROM Users WHERE Username=@u AND Password=@p", con);
+
+                cmd.Parameters.AddWithValue("@u", txtUsername.Text);
+                cmd.Parameters.AddWithValue("@p", txtPassword.Text);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    this.Hide();                      // keep login alive
+                    Dashboard dashboard = new Dashboard();
+                    dashboard.ShowDialog();           // WAIT until logout
+                    this.Show();                      // login shows again
+                    this.txtPassword.Clear();
+                    this.txtUsername.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Login");
+                }
             }
-            else
-            {
-                MessageBox.Show("Invalid Login");
-            }
-            con.Close();
         }
+
 
         private void lblName_Click(object sender, EventArgs e)
         {
@@ -77,11 +83,19 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
             }
         }
 
+
+        //private void LoginForm_shown(object sender, EventArgs e)
+        //{
+        //    txtUsername.Select();
+        //    txtUsername.Focus();
+        //}
         private void LoginForm_Load(object sender, EventArgs e)
         {
             BackColor = Color.DarkSlateGray;
             lblLogin.ForeColor = Color.DarkSlateGray;
             btnLogin.BackColor = Color.DarkSlateGray;
+            //txtUsername.Focus();
+            this.ActiveControl = txtUsername;
             //ForeColor = Color.DarkSlateGray;
         }
 

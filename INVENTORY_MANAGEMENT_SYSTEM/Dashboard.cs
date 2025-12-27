@@ -142,7 +142,21 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
 
         private void btnlogout_Click(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Confirm Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
 
+                List<Form> openForms = Application.OpenForms.Cast<Form>().ToList();
+
+                foreach (Form form in openForms)
+                {
+                    // Do NOT close LoginForm
+                    if (!(form is LoginForm))
+                    {
+                        form.Close();
+                    }
+                }
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)
