@@ -38,9 +38,11 @@
             userspanel = new Panel();
             lblusersData = new Label();
             pnlorders = new Panel();
-            lblorders = new Label();
+            lblproducts = new Label();
             pnlsales = new Panel();
             lblsales = new Label();
+            lblTotalUsers = new Label();
+            lblTotalProducts = new Label();
             pnlHeader.SuspendLayout();
             panel1.SuspendLayout();
             userspanel.SuspendLayout();
@@ -174,6 +176,7 @@
             // userspanel
             // 
             userspanel.BackColor = Color.Gray;
+            userspanel.Controls.Add(lblTotalUsers);
             userspanel.Controls.Add(lblusersData);
             userspanel.Cursor = Cursors.Hand;
             userspanel.Location = new Point(394, 646);
@@ -185,16 +188,17 @@
             // 
             lblusersData.Font = new Font("Book Antiqua", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblusersData.ForeColor = SystemColors.ButtonHighlight;
-            lblusersData.Location = new Point(56, 57);
+            lblusersData.Location = new Point(76, 16);
             lblusersData.Name = "lblusersData";
-            lblusersData.Size = new Size(200, 35);
+            lblusersData.Size = new Size(177, 47);
             lblusersData.TabIndex = 0;
             lblusersData.Text = "Total Users";
             // 
             // pnlorders
             // 
             pnlorders.BackColor = Color.DimGray;
-            pnlorders.Controls.Add(lblorders);
+            pnlorders.Controls.Add(lblTotalProducts);
+            pnlorders.Controls.Add(lblproducts);
             pnlorders.Cursor = Cursors.Hand;
             pnlorders.Location = new Point(804, 646);
             pnlorders.Name = "pnlorders";
@@ -202,15 +206,15 @@
             pnlorders.TabIndex = 6;
             pnlorders.Paint += pnlorders_Paint;
             // 
-            // lblorders
+            // lblproducts
             // 
-            lblorders.Font = new Font("Book Antiqua", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblorders.ForeColor = SystemColors.ButtonHighlight;
-            lblorders.Location = new Point(56, 57);
-            lblorders.Name = "lblorders";
-            lblorders.Size = new Size(200, 35);
-            lblorders.TabIndex = 0;
-            lblorders.Text = "Total Orders";
+            lblproducts.Font = new Font("Book Antiqua", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblproducts.ForeColor = SystemColors.ButtonHighlight;
+            lblproducts.Location = new Point(44, 16);
+            lblproducts.Name = "lblproducts";
+            lblproducts.Size = new Size(185, 38);
+            lblproducts.TabIndex = 0;
+            lblproducts.Text = "Total Products";
             // 
             // pnlsales
             // 
@@ -231,6 +235,29 @@
             lblsales.Size = new Size(200, 35);
             lblsales.TabIndex = 0;
             lblsales.Text = "Total Sales";
+            // 
+            // lblTotalUsers
+            // 
+            lblTotalUsers.AutoSize = true;
+            lblTotalUsers.Font = new Font("Book Antiqua", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotalUsers.ForeColor = SystemColors.ButtonHighlight;
+            lblTotalUsers.Location = new Point(125, 82);
+            lblTotalUsers.Name = "lblTotalUsers";
+            lblTotalUsers.Size = new Size(24, 28);
+            lblTotalUsers.TabIndex = 1;
+            lblTotalUsers.Text = "0";
+            // 
+            // lblTotalProducts
+            // 
+            lblTotalProducts.AutoSize = true;
+            lblTotalProducts.Font = new Font("Book Antiqua", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotalProducts.ForeColor = SystemColors.ButtonHighlight;
+            lblTotalProducts.Location = new Point(140, 82);
+            lblTotalProducts.Name = "lblTotalProducts";
+            lblTotalProducts.Size = new Size(24, 28);
+            lblTotalProducts.TabIndex = 2;
+            lblTotalProducts.Text = "0";
+            lblTotalProducts.Click += label2_Click;
             // 
             // Dashboard
             // 
@@ -254,7 +281,9 @@
             pnlHeader.PerformLayout();
             panel1.ResumeLayout(false);
             userspanel.ResumeLayout(false);
+            userspanel.PerformLayout();
             pnlorders.ResumeLayout(false);
+            pnlorders.PerformLayout();
             pnlsales.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -271,8 +300,10 @@
         private Panel userspanel;
         private Label lblusersData;
         private Panel pnlorders;
-        private Label lblorders;
+        private Label lblproducts;
         private Panel pnlsales;
         private Label lblsales;
+        private Label lblTotalUsers;
+        private Label lblTotalProducts;
     }
 }

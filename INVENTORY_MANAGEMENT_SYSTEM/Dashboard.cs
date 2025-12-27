@@ -1,4 +1,6 @@
-﻿using System;
+﻿using InventoryManagementSystem;
+using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,6 +28,12 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
             btnproducts.FlatAppearance.BorderSize = 0;
             btnreports.FlatAppearance.BorderSize = 0;
             btnuser.FlatAppearance.BorderSize = 0;
+
+            LoadDashboardCounts();
+
+
+
+
             //btndash.FlatAppearance.BorderSize = 0;
         }
 
@@ -136,5 +144,47 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
         {
 
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        //get total count 
+
+        private int GetTotalCount(string tableName)
+        {
+            using (SqlConnection con = DatabaseHelper.GetConnection())
+            {
+                SqlCommand cmd = new SqlCommand(
+                    $"SELECT COUNT(*) FROM {tableName}", con);
+
+                con.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        //load counts on dashboard
+
+        private void LoadDashboardCounts()
+        {
+            try
+            {
+                lblTotalProducts.Text = GetTotalCount("Products").ToString();
+                lblTotalUsers.Text = GetTotalCount("Employees").ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading dashboard counts:\n" + ex.Message);
+            }
+        }
+
+
+
+
+
+        //load the count and tell us the total count of products ,categories ,users
+
     }
 }

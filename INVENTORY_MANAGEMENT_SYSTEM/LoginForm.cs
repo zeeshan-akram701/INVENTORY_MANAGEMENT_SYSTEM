@@ -17,7 +17,7 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
         public LoginForm()
         {
             InitializeComponent();
-            
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -79,7 +79,15 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            BackColor  = Color.DarkSlateGray;
+            BackColor = Color.DarkSlateGray;
+            lblLogin.ForeColor = Color.DarkSlateGray;
+            btnLogin.BackColor = Color.DarkSlateGray;
+            //ForeColor = Color.DarkSlateGray;
+        }
+
+        private void lblLogin_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

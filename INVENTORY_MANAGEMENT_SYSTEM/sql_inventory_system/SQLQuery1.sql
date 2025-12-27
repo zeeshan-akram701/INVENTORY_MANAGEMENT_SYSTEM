@@ -51,3 +51,20 @@ ALTER COLUMN Username NVARCHAR(50) NOT NULL;
 
 ALTER TABLE Employees
 ALTER COLUMN Password NVARCHAR(100) NOT NULL;
+
+
+
+
+CREATE TABLE Categories (
+    CategoryID INT IDENTITY PRIMARY KEY,
+    CategoryName NVARCHAR(100) NOT NULL UNIQUE,
+    Status NVARCHAR(20) NOT NULL
+);
+
+
+
+
+
+
+
+

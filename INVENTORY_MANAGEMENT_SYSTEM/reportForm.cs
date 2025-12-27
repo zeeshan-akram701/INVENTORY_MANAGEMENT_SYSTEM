@@ -35,6 +35,10 @@ namespace INVENTORY_MANAGEMENT_SYSTEM
             }
         }
 
+       
+
+
+
         // 🔹 Low Stock Report
         private void btnLowStock_Click(object sender, EventArgs e)
         {

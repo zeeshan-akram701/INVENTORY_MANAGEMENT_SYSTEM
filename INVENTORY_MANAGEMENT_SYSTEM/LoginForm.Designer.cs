@@ -116,6 +116,7 @@
             lblLogin.TabIndex = 3;
             lblLogin.Text = "Login";
             lblLogin.TextAlign = ContentAlignment.MiddleCenter;
+            lblLogin.Click += lblLogin_Click;
             // 
             // panel2
             // 
