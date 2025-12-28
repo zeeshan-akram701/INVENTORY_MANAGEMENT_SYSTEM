@@ -55,14 +55,48 @@ ALTER COLUMN Password NVARCHAR(100) NOT NULL;
 
 
 
-CREATE TABLE Categories (
-    CategoryID INT IDENTITY PRIMARY KEY,
-    CategoryName NVARCHAR(100) NOT NULL UNIQUE,
-    Status NVARCHAR(20) NOT NULL
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE dbo.Sales (
+    SaleID INT IDENTITY PRIMARY KEY,
+    ProductID INT NOT NULL,
+    Quantity INT NOT NULL,
+    Price DECIMAL(10,2) NOT NULL,
+    Total DECIMAL(10,2) NOT NULL,
+    SaleDate DATETIME DEFAULT GETDATE(),
+
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
 );
 
 
+drop table Sales;
 
+
+create table Paym(
+	ProductID INT NOT NULL,
+    Quantity INT NOT NULL,
+    Price DECIMAL(10,2) NOT NULL,
+    Total DECIMAL(10,2) NOT NULL,
+	FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+);
+
+
+use inventoryDB;
+
+ALTER TABLE Paym
+ADD SaleDate DATETIME DEFAULT GETDATE();
+
+select * from Paym;
+select * from Products;
 
 
 
